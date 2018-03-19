@@ -58,7 +58,7 @@ class Expo(models.Model):
 
 class Obra(models.Model):
     created = models.DateTimeField(auto_now_add=True)
-    expo = models.ForeignKey(Expo, on_delete=models.CASCADE)
+    expo = models.ForeignKey(Expo, on_delete=models.CASCADE,  related_name='obras')
     creador = models.CharField(max_length=150, blank=False, default='')
     titulo = models.CharField(max_length=150, blank=False, default='')
     fecha = models.DateField(blank=False, auto_now=True)
@@ -74,3 +74,8 @@ class Obra(models.Model):
 
     def __unicode__(self):
         return self.titulo
+
+class Comentario(models.Model):
+  created = models.DateTimeField(auto_now_add=True)
+  obra = models.ForeignKey(Obra, on_delete=models.CASCADE,  related_name='comentarios')
+  texto = models.TextField(max_length=1024)

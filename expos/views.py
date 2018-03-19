@@ -2,8 +2,8 @@ from django.contrib.auth.models import User
 from django.shortcuts import render
 from django.template import RequestContext, loader
 
-from expos.models import Obra, Expo
-from expos.serializers import ExpoSerializer, ObraSerializer
+from expos.models import Obra, Expo, Comentario
+from expos.serializers import ExpoSerializer, ObraSerializer, ComentarioSerializer
 from expos.permissions import IsOwnerOrReadOnly
 
 from rest_framework import generics, permissions, renderers, viewsets
@@ -30,6 +30,9 @@ class ObraViewSet(viewsets.ModelViewSet):
     queryset = Obra.objects.all()
     serializer_class = ObraSerializer
 
+class ComentarioViewSet(viewsets.ModelViewSet):
+  queryset = Comentario.objects.all()
+  serializer_class = ComentarioSerializer
 
 
 def index(request):
